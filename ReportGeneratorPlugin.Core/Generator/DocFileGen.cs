@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DocumentFormat.OpenXml;
+﻿using System.Collections.Generic;
 using ReportGeneratorPlugin.Core.Models;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
+using Xceed.Document.NET;
+using Xceed.Words.NET;
 
 namespace ReportGeneratorPlugin.Core.Generator
 {
@@ -25,14 +20,49 @@ namespace ReportGeneratorPlugin.Core.Generator
 
         public void CreateDocFile(string path)
         {
-            WordprocessingDocument doc = WordprocessingDocument.Create(path, WordprocessingDocumentType.Document);
+            if (path.EndsWith(".pdf"))
+            {
+                path = path.Replace(".pdf", ".docx");
+            }
+            DocX document = DocX.Create(path, DocumentTypes.Document);
 
-            Body body = doc.MainDocumentPart.Document.Body;
+           foreach (var fileContent in Files)
+           {
+               document.InsertParagraph(fileContent.Name + ":")
+                   .Font("Calibri")
+                   .FontSize(18)
+                   .Alignment = Alignment.center;
+               document.InsertParagraph(fileContent.Content)
+                   .Font("Calibri")
+                   .FontSize(12)
+                   .Alignment = Alignment.left;
+           }
 
-            Paragraph para = body.AppendChild(new Paragraph());
-            Run run = para.AppendChild(new Run());
-            run.AppendChild(new Text(Files[0].Content));
-            doc.Close();
+           document.Save();
+        }
+
+        public void CreatePdfFile(string path)
+        {
+            if (path.EndsWith(".docx"))
+            {
+                path = path.Replace(".docx", ".pdf");
+            }
+            DocX document = DocX.Create(path, DocumentTypes.Pdf);
+
+            foreach (var fileContent in Files)
+            {
+                document.InsertParagraph(fileContent.Name + ":")
+                    .Font("Calibri")
+                    .FontSize(18)
+                    .Alignment = Alignment.center;
+                document.InsertParagraph(fileContent.Content)
+                    .Font("Calibri")
+                    .FontSize(12)
+                    .Alignment = Alignment.left;
+            }
+
+            document.Save();
+
         }
     }
 }
