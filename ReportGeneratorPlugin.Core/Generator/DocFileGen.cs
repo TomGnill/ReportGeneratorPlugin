@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ReportGeneratorPlugin.Core.Models;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
@@ -28,17 +29,20 @@ namespace ReportGeneratorPlugin.Core.Generator
 
            foreach (var fileContent in Files)
            {
-               document.InsertParagraph(fileContent.Name + ":")
-                   .Font("Calibri")
-                   .FontSize(18)
-                   .Alignment = Alignment.center;
-               document.InsertParagraph(fileContent.Content)
-                   .Font("Calibri")
-                   .FontSize(12)
-                   .Alignment = Alignment.left;
-           }
 
-           document.Save();
+               document.InsertParagraph(fileContent.Name + ":")
+                   .Font("Consolas")
+                   .FontSize(14)
+                   .Alignment = Alignment.center;
+               Table table = document.AddTable(1, 1);
+               table.Alignment = Alignment.center;
+               table.Rows[0].Cells[0].Paragraphs[0]
+                   .Append(fileContent.Content)
+                   .FontSize(10.5)
+                   .Font("Consolas");
+               document.InsertTable(table);
+           }
+            document.Save();
         }
 
         public void CreatePdfFile(string path)
@@ -52,13 +56,17 @@ namespace ReportGeneratorPlugin.Core.Generator
             foreach (var fileContent in Files)
             {
                 document.InsertParagraph(fileContent.Name + ":")
-                    .Font("Calibri")
+                    .Font("Consolas")
                     .FontSize(18)
                     .Alignment = Alignment.center;
-                document.InsertParagraph(fileContent.Content)
-                    .Font("Calibri")
-                    .FontSize(12)
-                    .Alignment = Alignment.left;
+                Table table = document.AddTable(1, 1);
+                table.Design = TableDesign.LightList;
+                table.Alignment = Alignment.center;
+                table.Rows[1].Cells[0].Paragraphs[0]
+                    .Append(fileContent.Content)
+                    .FontSize(10.5)
+                    .Font("Consolas");
+                document.InsertTable(table);
             }
 
             document.Save();

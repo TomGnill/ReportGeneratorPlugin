@@ -24,8 +24,8 @@ namespace ReportGeneratorPlugin.UI
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [Guid(ReportGeneratorPlugin.UIPackage.PackageGuidString)]
-    public sealed class ReportGeneratorPlugin.UIPackage : AsyncPackage
+    [Guid(ReportGeneratorPlugin.UI.Package.PackageGuidString)]
+    public sealed class ReportGeneratorPlugin.UI.Package : AsyncPackage
     {
     /// <summary>
     /// ReportGeneratorPlugin.UIPackage GUID string.
