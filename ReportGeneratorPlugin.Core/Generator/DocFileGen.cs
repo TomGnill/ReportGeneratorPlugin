@@ -21,14 +21,21 @@ namespace ReportGeneratorPlugin.Core.Generator
 
         public void CreateDocFile(string path)
         {
+            
             if (path.EndsWith(".pdf"))
             {
                 path = path.Replace(".pdf", ".docx");
             }
             DocX document = DocX.Create(path, DocumentTypes.Document);
+            document.InsertParagraph("introduction:")
+                .FontSize(15)
+                .Alignment = Alignment.left;
+            document.InsertParagraph($"{Introduction}")
+                .FontSize(12)
+                .Alignment = Alignment.left;
 
-           foreach (var fileContent in Files)
-           {
+            foreach (var fileContent in Files)
+            {
 
                document.InsertParagraph(fileContent.Name + ":")
                    .Font("Consolas")
@@ -41,7 +48,13 @@ namespace ReportGeneratorPlugin.Core.Generator
                    .FontSize(10.5)
                    .Font("Consolas");
                document.InsertTable(table);
-           }
+            }
+            document.InsertParagraph("Conclusion:")
+               .FontSize(15)
+               .Alignment = Alignment.left;
+           document.InsertParagraph($"{Conclusion}")
+               .FontSize(12)
+               .Alignment = Alignment.left;
             document.Save();
         }
 
@@ -52,7 +65,12 @@ namespace ReportGeneratorPlugin.Core.Generator
                 path = path.Replace(".docx", ".pdf");
             }
             DocX document = DocX.Create(path, DocumentTypes.Pdf);
-
+            document.InsertParagraph("introduction:")
+                .FontSize(15)
+                .Alignment = Alignment.left;
+            document.InsertParagraph($"{Introduction}")
+                .FontSize(12)
+                .Alignment = Alignment.left;
             foreach (var fileContent in Files)
             {
                 document.InsertParagraph(fileContent.Name + ":")
@@ -68,7 +86,12 @@ namespace ReportGeneratorPlugin.Core.Generator
                     .Font("Consolas");
                 document.InsertTable(table);
             }
-
+            document.InsertParagraph("Conclusion:")
+                .FontSize(15)
+                .Alignment = Alignment.left;
+            document.InsertParagraph($"{Conclusion}")
+                .FontSize(12)
+                .Alignment = Alignment.left;
             document.Save();
 
         }
