@@ -25,7 +25,7 @@
         <TextBox VerticalAlignment="Bottom" x:Name ="Conclusion" SelectionChanged="Conclusion_SelectionChanged"  Height="34" Margin="0,0,0,191" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleY="-1"/>
+                    <ScaleTransform ScaleY="1"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
@@ -35,7 +35,7 @@
         <TextBox VerticalAlignment="Bottom" x:Name ="Inroduction" SelectionChanged="Inroduction_SelectionChanged"  Height="29" Margin="0,0,0,243" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleY="-1"/>
+                    <ScaleTransform ScaleY="1"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
