@@ -27,7 +27,7 @@ namespace ReportGeneratorPlugin.UI
         /// <summary>
         /// VS Package that provides this command, not null.
         /// </summary>
-        private readonly AsyncPackage package;
+        private readonly AsyncPackage _package;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolWindow1Command"/> class.
@@ -37,11 +37,11 @@ namespace ReportGeneratorPlugin.UI
         /// <param name="commandService">Command service to add command to, not null.</param>
         private ToolWindow1Command(AsyncPackage package, OleMenuCommandService commandService)
         {
-            this.package = package ?? throw new ArgumentNullException(nameof(package));
+            this._package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
-            var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.Execute, menuCommandID);
+            var menuCommandId = new CommandID(CommandSet, CommandId);
+            var menuItem = new MenuCommand(Execute, menuCommandId);
             commandService.AddCommand(menuItem);
         }
 
@@ -61,7 +61,7 @@ namespace ReportGeneratorPlugin.UI
         {
             get
             {
-                return this.package;
+                return _package;
             }
         }
 
@@ -86,9 +86,9 @@ namespace ReportGeneratorPlugin.UI
         /// <param name="e">The event args.</param>
         private void Execute(object sender, EventArgs e)
         {
-            this.package.JoinableTaskFactory.RunAsync(async delegate
+            _package.JoinableTaskFactory.RunAsync(async delegate
             {
-                ToolWindowPane window = await this.package.ShowToolWindowAsync(typeof(ToolWindow1), 0, true, this.package.DisposalToken);
+                ToolWindowPane window = await _package.ShowToolWindowAsync(typeof(ToolWindow1), 0, true, _package.DisposalToken);
                 if ((null == window) || (null == window.Frame))
                 {
                     throw new NotSupportedException("Cannot create tool window");

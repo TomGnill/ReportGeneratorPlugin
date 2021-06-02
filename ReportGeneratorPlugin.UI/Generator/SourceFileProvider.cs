@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using ReportGeneratorPlugin.Core.Models;
-using System.Linq;
-using System.Net.Sockets;
 
-namespace ReportGeneratorPlugin.Core.Generator
+namespace ReportGeneratorPlugin.UI.Generator
 {
     public class SourceFileProvider
     {

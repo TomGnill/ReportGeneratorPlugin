@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using ReportGeneratorPlugin.Core.Models;
+﻿using System.Collections.Generic;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
-namespace ReportGeneratorPlugin.Core.Generator
+namespace ReportGeneratorPlugin.UI.Generator
 {
     public class DocFileGen
     {
@@ -78,7 +76,6 @@ namespace ReportGeneratorPlugin.Core.Generator
                     .FontSize(18)
                     .Alignment = Alignment.center;
                 Table table = document.AddTable(1, 1);
-                table.Design = TableDesign.LightList;
                 table.Alignment = Alignment.center;
                 table.Rows[1].Cells[0].Paragraphs[0]
                     .Append(fileContent.Content)

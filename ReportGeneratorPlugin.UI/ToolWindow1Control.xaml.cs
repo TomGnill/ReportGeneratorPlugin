@@ -1,7 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using ReportGenerator = ReportGeneratorPlugin.UI.Generator.ReportGenerator;
 
 namespace ReportGeneratorPlugin.UI
 {
@@ -15,8 +17,10 @@ namespace ReportGeneratorPlugin.UI
         /// </summary>
         public ToolWindow1Control()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
+
+        private bool _isPdf = false;
 
         /// <summary>
         /// Handles click on the button by displaying a message box.
@@ -27,7 +31,9 @@ namespace ReportGeneratorPlugin.UI
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
         private void Generate_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            List<string> ext = new List<string>() { ".cs" };
+            ReportGenerator gen = new ReportGenerator(filePath.Text);
+            gen.GenerateReport(@"C:\Users\andri\source\repos\ReportGeneratorPlugin", "", "", ext, true);
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
@@ -37,7 +43,7 @@ namespace ReportGeneratorPlugin.UI
 
         private void fileFormat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            _isPdf = !_isPdf;
         }
 
         private void filePath_SelectionChanged(object sender, RoutedEventArgs e)
@@ -46,10 +52,12 @@ namespace ReportGeneratorPlugin.UI
         }
         private void Select_Path_Button_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog.FilterIndex = 2;
-            saveFileDialog.RestoreDirectory = true;
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "pdf files (*.pdf)|*.pdf | doc files (*.docx, .doc) |*.docx *.doc",
+                FilterIndex = 2,
+                RestoreDirectory = true
+            };
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
