@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using ReportGeneratorPlugin.Core.Models;
+﻿using System.Collections.Generic;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
-namespace ReportGeneratorPlugin.Core.Generator
+namespace ReportGeneratorPlugin.UI.Generator
 {
     public class DocFileGen
     {

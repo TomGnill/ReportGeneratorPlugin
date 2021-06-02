@@ -49,11 +49,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ReportGeneratorPlugin.Core\ReportGeneratorPlugin.Core.csproj">
-      <Project>{fffddedb-d185-4006-a033-c688e0460418}</Project>
-      <Name>ReportGeneratorPlugin.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

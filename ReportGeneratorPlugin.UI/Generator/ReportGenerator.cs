@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace ReportGeneratorPlugin.Core.Generator
+namespace ReportGeneratorPlugin.UI.Generator
 {
     public class ReportGenerator
     {
@@ -16,7 +12,7 @@ namespace ReportGeneratorPlugin.Core.Generator
         }
         public void GenerateReport(string path, string conlution, string introdaction, List<string> filters)
         {
-            DocFileGen gen = new DocFileGen(new SourceFileProvider(path, filters).GetFiles(), introdaction, conlution);
+            UI.Generator.DocFileGen gen = new UI.Generator.DocFileGen(new SourceFileProvider(path, filters).GetFiles(), introdaction, conlution);
             gen.CreateDocFile(docPath);
         }
     }
