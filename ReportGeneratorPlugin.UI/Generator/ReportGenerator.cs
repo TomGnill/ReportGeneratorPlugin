@@ -4,16 +4,21 @@ namespace ReportGeneratorPlugin.UI.Generator
 {
     public class ReportGenerator
     {
-        public string docPath { get; set; }
+        public string DocPath { get; set; }
 
         public ReportGenerator(string path)
         {
-            docPath = path;
+            DocPath = path;
         }
-        public void GenerateReport(string path, string conlution, string introdaction, List<string> filters)
+        public void GenerateReport(string path, string сonclusion, string introdaction, List<string> filters, bool isPdf)
         {
-            UI.Generator.DocFileGen gen = new UI.Generator.DocFileGen(new SourceFileProvider(path, filters).GetFiles(), introdaction, conlution);
-            gen.CreateDocFile(docPath);
+            DocFileGen gen = new DocFileGen(new SourceFileProvider(path, filters).GetFiles(), introdaction, сonclusion);
+            if(!isPdf)
+                gen.CreateDocFile(DocPath);
+            else
+            
+                gen.CreatePdfFile(DocPath);
+            
         }
     }
 }

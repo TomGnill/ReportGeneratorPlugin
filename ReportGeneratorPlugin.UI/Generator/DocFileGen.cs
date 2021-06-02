@@ -76,7 +76,6 @@ namespace ReportGeneratorPlugin.UI.Generator
                     .FontSize(18)
                     .Alignment = Alignment.center;
                 Table table = document.AddTable(1, 1);
-                table.Design = TableDesign.LightList;
                 table.Alignment = Alignment.center;
                 table.Rows[1].Cells[0].Paragraphs[0]
                     .Append(fileContent.Content)
