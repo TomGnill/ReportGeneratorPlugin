@@ -77,7 +77,7 @@ namespace ReportGeneratorPlugin.UI.Generator
                     .Alignment = Alignment.center;
                 Table table = document.AddTable(1, 1);
                 table.Alignment = Alignment.center;
-                table.Rows[1].Cells[0].Paragraphs[0]
+                table.Rows[0].Cells[0].Paragraphs[0]
                     .Append(fileContent.Content)
                     .FontSize(10.5)
                     .Font("Consolas");

@@ -7,18 +7,61 @@
              Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
              Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
-             Name="MyToolWindow">
+             d:DesignHeight="300" d:DesignWidth="300" 
+             Name="ReportGenerator">
+    
     <Grid>
+
         <Button Content="Сгенерировать" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="Generate_Button_Click" Name="Generate_Button" Height ="20" Width="90" Margin="0,0,65,10"/>
         <Button Content="Отмена" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="Cancel_Button_Click" Name="Cancel_Button" Height ="20" Width="50" Margin="0,0,10,10"/>
-        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,169">Выбор формата файла</TextBlock>
-        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,245">Выбрать путь для сохранения</TextBlock>
-        <TextBox VerticalAlignment="Bottom" x:Name ="filePath"  Height="20" Margin="1,0,-1,220"/>
-        <Button Content="..." VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="Select_Path_Button_Click" Name="Select_Path_Button" Height ="20" Width="26" Margin="0,0,0,220" RenderTransformOrigin="0.47,-0.099"/>
-        <ComboBox VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="fileFormat"  Margin="0,0,10,169" SelectionChanged="fileFormat_SelectionChanged" Width="141" Height="20">
-            <TextBlock>.pdf</TextBlock>
-            <TextBlock>.docx</TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,90">Выбор формата файла</TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,135">Выбрать путь для сохранения</TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="2,0,0,171">Выбрать репозиторий</TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,224">Вывод для отчёта</TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,274">Вступление для отчёта</TextBlock>
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,69">Фильтр файлов</TextBlock>
+        <TextBox VerticalAlignment="Bottom" x:Name ="filePath"  Height="20" Margin="0,0,0,115"/>
+        <TextBox VerticalAlignment="Bottom" x:Name ="repoPath"  Height="20" Margin="0,0,0,151"/>
+        <TextBox VerticalAlignment="Bottom" x:Name ="Conclusion" SelectionChanged="Conclusion_SelectionChanged"  Height="34" Margin="0,0,0,191" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBox VerticalAlignment="Bottom" x:Name ="Inroduction" SelectionChanged="Inroduction_SelectionChanged"  Height="29" Margin="0,0,0,243" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Button Content="..." VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="Select_Path_Button_Click" Name="Select_Path_Button" Height ="20" Width="26" Margin="0,0,0,115" RenderTransformOrigin="0.47,-0.099"/>
+        <Button Content="..." VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="Select_repoPath_Button_Click" Name="Select_repoPath_Button" Height ="20" Width="26" Margin="0,0,0,151" RenderTransformOrigin="0.47,-0.099"/>
+        <ComboBox VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="fileFormat"  Margin="0,0,0,90" SelectionChanged="fileFormat_SelectionChanged" Width="141" Height="20">
+            <ComboBoxItem Content=".pdf" Tag=".pdf"></ComboBoxItem>
+            <ComboBoxItem Content=".docx" Tag=".docx"></ComboBoxItem>
         </ComboBox>
+        <CheckBox VerticalAlignment="Bottom" x:Name="csCheckBox" Height="16" Margin="2,0,261,43" Content=".cs"
+            Unchecked ="csCheckBox_Unchecked"
+            Checked="csCheckBox_Checked"/>
+        <CheckBox VerticalAlignment="Bottom" x:Name="cppCheckBox" Height="16" Margin="44,0,203,43" Content=".cpp"
+            Unchecked ="cppCheckBox_Unchecked"
+            Checked="cppCheckBox_Checked"/>
+        <CheckBox VerticalAlignment="Bottom" x:Name="hCheckBox" Height="16" Margin="102,0,145,43" Content=".h"
+            Unchecked ="hCheckBox_Unchecked"
+            Checked="hCheckBox_Checked"/>
+        <CheckBox VerticalAlignment="Bottom" x:Name="razorCheckBox" Height="16" Margin="145,0,102,43" Content=".razor"
+            Unchecked ="razorCheckBox_Unchecked"
+            Checked="razorCheckBox_Checked"/>
+        <CheckBox VerticalAlignment="Bottom" x:Name="htmlCheckBox" Height="16" Margin="210,0,37,43" Content=".html"
+            Unchecked ="htmlCheckBox_Unchecked"
+            Checked="razorCheckBox_Checked"/>
     </Grid>
 </UserControl>
