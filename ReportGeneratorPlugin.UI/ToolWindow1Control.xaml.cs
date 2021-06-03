@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace ReportGeneratorPlugin.UI
         /// </summary>
         public ToolWindow1Control()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
             InitializeComponent();
         }
 
@@ -36,7 +38,7 @@ namespace ReportGeneratorPlugin.UI
         private void Generate_Button_Click(object sender, RoutedEventArgs e)
         {
             ReportGenerator gen = new ReportGenerator(filePath.Text);
-            gen.GenerateReport(repoPath.Text, Introduction, conclusion, extensions, _isPdf);
+            gen.GenerateReport(repoPath.Text, conclusion, Introduction, extensions, _isPdf);
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
